@@ -10,28 +10,20 @@
 <h1>All Posts</h1>
 
     <hr>
-    <h2> Create new Blog Post</h2>
-    <form action="/posts" method="POST">
-        Title:<input type="text" name="title" id="title">
-        <br>
-         Author:<input type="text" name="author" id="author">
-        <br>
-        Post:<input type="text" name="content" id="content">
-        <br>
-        <input type="submit" value="Post">
-    </form>
-    </hr>
-
+   
+    <br>
     {% for post in posts1 %}
         <h2>{{ post.title}}</h2>
             {% if post.author %}
-                <h2>By : {{post.author}}</h2>
+                <small> Writen By : {{post.author}} on {{post.date_posted}}</small>
             {% else %}
-                <h2>By : NA</h2>
+                <small> Writen By : Unknown on {{post.date_posted}}</small>
             {%endif%}
-        <p> {{ post.content }} </p>
-        <a href='/posts/delete/{{post.id}}'> Delete </a>
-        <a href='/posts/edit/{{post.id}}'> Edit </a>
+        <br>
+        <br>
+        <p style="white-space:pre-wrap">  {{ post.content }} </p>
+        <a class = "btn btn-danger" href='/posts/delete/{{post.id}}'> Delete </a>
+        <a class = "btn btn-primary" href='/posts/edit/{{post.id}}'> Edit </a>
         <hr>
     {%  endfor %}
 {% endblock %}
